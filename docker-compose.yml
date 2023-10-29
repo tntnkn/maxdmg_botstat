@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  bot:
+    build: . 
+    env_file: 
+      - ./.env
+    network_mode: "host"   
+    deploy:
+      resources:
+        limits:
+          memory: 1GB
+        reservations:
+          cpus: '1'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
